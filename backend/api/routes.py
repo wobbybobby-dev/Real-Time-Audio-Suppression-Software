@@ -3,7 +3,7 @@ import numpy as np
 from backend.engine.processor import MaskingEngine
 
 router = APIRouter()
-engine = MaskingEngine()
+engine = MaskingEngine("checkpoints/model.pt")
 
 @router.websocket("/ws/audio")
 async def audio_endpoint(websocket: WebSocket):
