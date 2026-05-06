@@ -5,7 +5,7 @@ This system allows users to dynamically filter live microphone input to either:
 * **Focus on speech** in noisy environments
 * **Suppress speech** to isolate ambient background sounds
 
-Designed for applications such as noise sensitivity assistance, focus enhancement, and intelligent audio filtering.
+Designed for applications such as noise sensitivity assistance, focus enhancement, and intelligent audio filtering. Targeted towards users with noise sensitivity, and even for people trying to focus.
 
 ---
 
