@@ -71,7 +71,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
   * AudioWorklet integration
   * Compute optimization
 
-* Around 200ms latency right now
+* Around 300ms latency right now
 
 ### 2. Streaming Stability
 
