@@ -22,9 +22,11 @@ export default function App() {
     updateControl
   } = useAudioWS(mode, strength);
 
-  useEffect(() => {
-    updateControl(mode, strength);
-  }, [mode, strength]);
+
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+    updateControl(newMode, strength);
+    };
 
   return (
     <div className="app-container">
@@ -61,7 +63,7 @@ export default function App() {
 
           <ModeSelector 
             currentMode={mode} 
-            onModeChange={setMode} 
+            onModeChange={handleModeChange} 
           />
 
           <div className="slider-block">
@@ -72,7 +74,11 @@ export default function App() {
               max="1"
               step="0.05"
               value={strength}
-              onChange={(e) => setStrength(parseFloat(e.target.value))}
+              onChange={(e) => {
+                const val = parseFloat(e.target.value);
+                setStrength(val);
+                updateControl(mode, val);
+              }}
             />
           </div>
 
