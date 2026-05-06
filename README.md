@@ -5,7 +5,7 @@ This system allows users to dynamically filter live microphone input to either:
 * **Focus on speech** in noisy environments
 * **Suppress speech** to isolate ambient background sounds
 
-Designed for applications such as noise sensitivity assistance, focus enhancement, and intelligent audio filtering. Targeted towards users with noise sensitivity, and even for people trying to focus.
+Designed for noise sensitivity assistance, focus enhancement, and intelligent audio filtering. 
 
 ---
 
@@ -61,9 +61,9 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 ---
 #  Challenges Overcomed
 
-Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
-Training Optimization -- Huge GPU power required, so training done on Google Colabs
-Dataset Optimization -- Used Lean Dataset Strategy
+*Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
+*Training Optimization -- Huge GPU power required, so training done on Google Colabs
+*Dataset Optimization -- Used Lean Dataset Strategy
 
 
 #  Current Challenges
@@ -77,14 +77,13 @@ Dataset Optimization -- Used Lean Dataset Strategy
   * AudioWorklet integration
   * Compute optimization
 
-
 ### 2. Streaming Stability
 
 * Ensuring consistent playback without drift or buffering buildup
 
 ### 3. Frontend Optimization
 
-* Migrating from ScriptProcessor → AudioWorklet
+* Migrating from ScriptProcessor → AudioWorklet, which will also lead to reduced latency
 
 ### 4. Deployment
 
@@ -113,6 +112,8 @@ Dataset Optimization -- Used Lean Dataset Strategy
 * Lightweight / quantized model
 * Multi-class sound separation (beyond speech vs noise)
 * Mobile / browser-native deployment
+
+I am looking forward to turn this into a functional, user-friendly software, which is easily accessible to all.
 
 ---
 
