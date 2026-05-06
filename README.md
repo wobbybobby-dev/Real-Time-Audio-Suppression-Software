@@ -13,7 +13,7 @@ Designed for applications such as noise sensitivity assistance, focus enhancemen
 
 ###  Focus Speech Mode
 
-Enhances human speech while suppressing background noise.
+Enhances human voice, while suppressing background noise.
 
 ###  Block Speech Mode
 
@@ -46,7 +46,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 **Frontend**
 
 * React (Web Audio API)
-* Real-time visualization
+* Real-time visualization (Frequency bar graphs)
 
 **Backend**
 
@@ -59,6 +59,11 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 * Spectral masking
 
 ---
+#  Challenges Overcomed
+
+Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
+
+
 
 #  Current Challenges
 
