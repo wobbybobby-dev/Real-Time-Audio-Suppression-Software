@@ -21,7 +21,7 @@ Removes human voices while preserving environmental sounds.
 
 ###  Real-Time Processing Pipeline
 
-Low-latency streaming pipeline:
+Streaming pipeline:
 
 Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
@@ -61,9 +61,10 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 ---
 #  Challenges Overcomed
 
-*Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
-*Training Optimization -- Huge GPU power required, so training done on Google Colabs
-*Dataset Optimization -- Used Lean Dataset Strategy
+* Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
+* Training Optimization -- Huge GPU power required, so training done on Google Colabs
+* Dataset Optimization -- Used Lean Dataset Strategy
+* Syncing frontend and backend together
 
 
 #  Current Challenges
@@ -117,16 +118,16 @@ I am looking forward to turn this into a functional, user-friendly software, whi
 
 ---
 
-#  Dataset
+#  Datasets
 
 * LibriSpeech (clean speech)
-* WHAM Noise Dataset
+* !WHAM Noise Dataset (lite version)
 * Mixed dynamically during training (no precomputed mixtures)
 
 ---
 
 #  Acknowledgements
 
-* LibriSpeech Dataset
-* WHAM Noise Dataset
+* LibriSpeech dev-clean Dataset
+* !WHAM Noise Dataset
 * PyTorch & librosa ecosystem
