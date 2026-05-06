@@ -128,6 +128,15 @@ I am looking forward to turn this into a functional, user-friendly software, whi
 
 ---
 
+# Screenshots Of the Software
+
+<img width="1600" height="739" alt="WhatsApp Image 2026-05-07 at 3 17 58 AM" src="https://github.com/user-attachments/assets/f30febb2-1506-4dbe-a43b-2f11d429080b" />
+<img width="1600" height="739" alt="WhatsApp Image 2026-05-07 at 3 18 17 AM" src="https://github.com/user-attachments/assets/c4b5b374-5504-45be-81da-128b295caa97" />
+<img width="1600" height="739" alt="WhatsApp Image 2026-05-07 at 3 18 37 AM" src="https://github.com/user-attachments/assets/ac7a0909-edcc-4984-8f8a-69bc59347ad3" />
+
+
+---
+
 #  Acknowledgements
 
 * LibriSpeech dev-clean Dataset
