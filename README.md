@@ -19,6 +19,8 @@ Enhances human voice, while suppressing background noise.
 
 Removes human voices while preserving environmental sounds.
 
+Users can control suppression strenth using a slider. Real-time  Frequency Graph Visualisation.
+
 ###  Real-Time Processing Pipeline
 
 Streaming pipeline:
