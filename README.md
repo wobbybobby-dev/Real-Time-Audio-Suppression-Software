@@ -62,7 +62,8 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 #  Challenges Overcomed
 
 Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
-
+Training Optimization -- Huge GPU power required, so training done on Google Colabs
+Dataset Optimization -- Used Lean Dataset Strategy
 
 
 #  Current Challenges
