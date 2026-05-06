@@ -1,0 +1,43 @@
+.status-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff4d4d;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.status-pill.active {
+  background: rgba(0, 242, 255, 0.1);
+  color: var(--accent-cyan);
+  border-color: rgba(0, 242, 255, 0.2);
+}
+
+.start-btn {
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  color: black;
+  font-weight: 800;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 242, 255, 0.4);
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
