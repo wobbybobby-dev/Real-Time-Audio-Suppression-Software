@@ -35,7 +35,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 ###  Dynamic Dataset Mixing
 
-* Clean speech (LibriSpeech) + noise (WHAM)
+* Clean speech (LibriSpeech) + noise (!WHAM)
 * Mixed **on-the-fly using random SNR**
 * Improves generalization and reduces dataset size
 
@@ -64,14 +64,13 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 ### 1. Real-Time Latency (Primary Focus)
 
-* Processing pipeline introduces delay accumulation
+* Processing pipeline introduces delay accumulation of about ~300ms at the moment
 * Working on:
 
   * Frame dropping strategies
   * AudioWorklet integration
   * Compute optimization
 
-* Around 300ms latency right now
 
 ### 2. Streaming Stability
 
