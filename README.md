@@ -1,4 +1,4 @@
-#  HappyEars! : Real-Time Audio Suppression System
+#  Real-Time Audio Suppression System
 
 A real-time audio processing application that selectively enhances or suppresses speech using deep learning.
 This system allows users to dynamically filter live microphone input to either:
