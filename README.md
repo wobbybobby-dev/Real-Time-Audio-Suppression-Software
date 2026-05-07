@@ -73,20 +73,16 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 ### 1. Real-Time Latency (Primary Focus)
 
-* Processing pipeline introduces delay accumulation of about ~300ms at the moment
+* Processing pipeline introduces delay accumulation of about ~200ms at the moment
 * Working on:
 
   * Frame dropping strategies
-  * AudioWorklet integration
   * Compute optimization
 
 ### 2. Streaming Stability
 
 * Ensuring consistent playback without drift or buffering buildup
 
-### 3. Frontend Optimization
-
-* Migrating from ScriptProcessor → AudioWorklet, which will also lead to reduced latency
 
 ### 4. Deployment
 
@@ -98,7 +94,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
  Model Training    :  Completed          
  Backend Pipeline  : Working            
- Audio Quality     :  Good               
+ Audio Quality     :  Good, improving more            
  Real-Time Latency :  Needs optimization 
 
 ---
