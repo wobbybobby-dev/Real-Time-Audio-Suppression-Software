@@ -84,7 +84,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 * Ensuring consistent playback without drift or buffering buildup
 
 
-### 4. Deployment
+### 3. Deployment
 
 * Exploring ONNX / AWS deployment for scalable inference
 
