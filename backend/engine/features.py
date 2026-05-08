@@ -3,6 +3,8 @@ import librosa
 from typing import Tuple
 from backend.config import settings
 
+WINDOW = "hann"
+
 
 def _to_float32(audio):
     if audio.dtype != np.float32:
@@ -18,7 +20,7 @@ def stft(audio: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         n_fft=settings.FFT_SIZE,
         hop_length=settings.HOP_LENGTH,
         window=settings.WINDOW,
-        center=True,
+        center= False,
     )
 
     magnitude = np.abs(D).astype(np.float32)
@@ -34,7 +36,7 @@ def istft(magnitude: np.ndarray, phase: np.ndarray) -> np.ndarray:
         D,
         hop_length=settings.HOP_LENGTH,
         window=settings.WINDOW,
-        center=True,
+        center=False,
     )
 
     return audio.astype(np.float32)
