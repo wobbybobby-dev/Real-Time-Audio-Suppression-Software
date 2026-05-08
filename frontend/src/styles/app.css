@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 .status-pill {
   padding: 0.5rem 1rem;
   border-radius: 99px;
@@ -36,8 +38,32 @@
   box-shadow: 0 15px 40px rgba(0, 242, 255, 0.4);
 }
 
+.title {
+    font-family: 'Audiowide';
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 1rem;
+    color: #cdd6da;
+}
+
+.subtitle{
+    font-family: Orbitron;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 0;
+    color: #b4b5b7;
+}
+
+.header > div{
+    width : 100%;
+    border: 1px solid rgb(161, 169, 172);
+    margin-bottom: 1rem;
+}
+
 .mode-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
+  font-family: cursive, sans-serif;
 }
