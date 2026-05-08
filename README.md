@@ -54,6 +54,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 * FastAPI + WebSockets
 * PyTorch inference pipeline
+* ONNX 
 
 **Audio Processing**
 
@@ -63,7 +64,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 ---
 #  Challenges Overcomed
 
-* Audio Quality -- Used fading, look_ahead, and other buffer-queue strategies to eliminate crackling audio
+* Real-Time Latency Stabilization -- Used ONNX Runtime to make system usable in real-time, highly decreased latency
 * Training Optimization -- Huge GPU power required, so training done on Google Colabs
 * Dataset Optimization -- Used Lean Dataset Strategy
 * Syncing frontend and backend together
@@ -71,31 +72,22 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 #  Current Challenges
 
-### 1. Real-Time Latency (Primary Focus)
+### 1. Audio Quality issues
 
-* Processing pipeline introduces delay accumulation of about ~200ms at the moment
-* Working on:
+* Audio quality improvement needs to be done carefully, as to not disturn the existing stable real-time stabilization.
+* Exploring different methods like Soft-Knee Limitation, AGC, AEC, soft masking, etc.
 
-  * Frame dropping strategies
-  * Compute optimization
-
-### 2. Streaming Stability
-
-* Ensuring consistent playback without drift or buffering buildup
-
-
-### 3. Deployment
-
-* Exploring ONNX / AWS deployment for scalable inference
-
----
+### Dataset and Model Improvements
+* Working on expanding dataset, and making a better model than the current U-Net one.
+* Improvement in this area will also lead to better audio quality.
+--
 
 #  Current Status
 
  Model Training    :  Completed          
  Backend Pipeline  : Working            
- Audio Quality     :  Good, improving more            
- Real-Time Latency :  Needs optimization 
+ Audio Quality     :  Improving           
+ Real-Time Latency :  Achieved stable real-time latency, using ONNX
 
 ---
 
@@ -107,7 +99,6 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 #  Future Work
 
-* Reduce latency to true real-time (<100 ms)
 * Lightweight / quantized model
 * Multi-class sound separation (beyond speech vs noise)
 * Mobile / browser-native deployment
@@ -124,12 +115,18 @@ I am looking forward to turn this into a functional, user-friendly software, whi
 
 ---
 
-# Screenshots Of the Software
+# Video Demo
 
-<img width="1600" height="739" alt="WhatsApp Image 2026-05-07 at 3 17 58 AM" src="https://github.com/user-attachments/assets/f30febb2-1506-4dbe-a43b-2f11d429080b" />
-<img width="1600" height="739" alt="WhatsApp Image 2026-05-07 at 3 18 17 AM" src="https://github.com/user-attachments/assets/c4b5b374-5504-45be-81da-128b295caa97" />
-<img width="1600" height="739" alt="WhatsApp Image 2026-05-07 at 3 18 37 AM" src="https://github.com/user-attachments/assets/ac7a0909-edcc-4984-8f8a-69bc59347ad3" />
 
+https://github.com/user-attachments/assets/e7eebc52-5bac-468c-a0c4-313283336757
+
+
+Video recorded on my phone, due to:
+* Latency issues when I use a pc screen recorder, due to system resource starvation
+* Audio quality being improved now.
+* Real-time latency stabilization achieved via ONNX runtime.
+
+Please excuse the times video gets blurry and I get shown in the PC screen due to the lighting, sorry about that!
 
 ---
 
