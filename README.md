@@ -122,6 +122,14 @@ I am looking forward to turn this into a functional, user-friendly software, whi
 https://github.com/user-attachments/assets/e7eebc52-5bac-468c-a0c4-313283336757
 
 
+
+https://github.com/user-attachments/assets/5cb7b3da-7488-4729-bab1-4b4437c29bb6
+
+
+
+
+
+
 Video recorded on my phone, due to:
 * Latency issues when I use a pc screen recorder, due to system resource starvation
 * Audio quality being improved now.
