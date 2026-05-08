@@ -128,6 +128,10 @@ Video recorded on my phone, due to:
 
 Please excuse the times video gets blurry and I get shown in the PC screen due to the lighting, sorry about that!
 
+Since the video quality is poor (apologise for the inconvenience, I only have my smartphone at the moment), here are some screenshots of the app so you can see the UI clearly:
+* 
+
+
 ---
 
 #  Acknowledgements
