@@ -54,8 +54,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 **Backend**
 
 * FastAPI + WebSockets
-* PyTorch inference pipeline
-* ONNX 
+* ONNX Runtime inference pipeline
 
 **Audio Processing**
 
@@ -65,10 +64,12 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 ---
 #  Challenges Overcomed
 
-* Real-Time Latency Stabilization -- Used ONNX Runtime to make system usable in real-time, highly decreased latency
+* Real-Time Latency Stabilization -- Used ONNX Runtime to make system usable in real-time, significantly decreasing latency and preventing long-term latency accumulation.
 * Training Optimization -- Huge GPU power required, so training done on Google Colabs
 * Dataset Optimization -- Used Lean Dataset Strategy
-* Syncing frontend and backend together
+* Frontend-Backend Synchronization -- Stabilized live audio streaming and playback between frontend and backend in real-time.
+* ONNX Deployment Issues -- Resolved tensor shape mismatches, dynamic padding issues, and inference instability during ONNX Runtime migration.
+* Real-Time Resource Constraints -- Optimized the system to maintain stable realtime responsiveness under normal usage despite browser and CPU contention.
 
 
 #  Current Challenges
@@ -77,10 +78,12 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 
 * Audio quality improvement needs to be done carefully, as to not disturn the existing stable real-time stabilization.
 * Exploring different methods like Soft-Knee Limitation, AGC, AEC, soft masking, etc.
+* Current bottleneck has shifted from latency engineering to model quality and perceptual speech enhancement.
 
 ### Dataset and Model Improvements
 * Working on expanding dataset, and making a better model than the current U-Net one.
-* Improvement in this area will also lead to better audio quality.
+* Exploring more advanced architectures inspired by modern speech enhancement systems (CRN, recurrent bottlenecks, temporal modeling).
+* Improvement in this area will directly improve speech intelligibility and overall audio quality.
 --
 
 #  Current Status
@@ -88,7 +91,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
  Model Training    :  Completed          
  Backend Pipeline  : Working            
  Audio Quality     :  Improving           
- Real-Time Latency :  Achieved stable real-time latency, using ONNX
+ Real-Time Latency :  Achieved stable low latency real-time, using ONNX
 
 ---
 
@@ -101,8 +104,10 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 #  Future Work
 
 * Lightweight / quantized model
+* Improved perceptual audio quality while preserving realtime responsiveness
 * Multi-class sound separation (beyond speech vs noise)
 * Mobile / browser-native deployment
+* Better temporal speech modeling
 
 I am looking forward to turn this into a functional, user-friendly software, which is easily accessible to all.
 
@@ -128,9 +133,8 @@ https://github.com/user-attachments/assets/5cb7b3da-7488-4729-bab1-4b4437c29bb6
 
 
 Video recorded on my phone, due to:
-* Latency issues when I use a pc screen recorder, due to system resource starvation
+* Latency issues(abnormal spikes) when I use a pc screen recorder, due to realtime system resource starvation.
 * Audio quality being improved now.
-* Real-time latency stabilization achieved via ONNX runtime.
 
 Please excuse the times video gets blurry and I get shown in the PC screen due to the lighting, sorry about that!
 
