@@ -33,8 +33,8 @@ export default function App() {
       
       <header className="header">
         <div>
-          <h1 className="title">SoundFilter</h1>
-          <p className="subtitle">Selective Audio Suppression</p>
+          <h1 className="title">SOUNDFILTER</h1>
+          <p className="subtitle">Selective Audio</p>
         </div>
 
         <button
@@ -50,7 +50,7 @@ export default function App() {
       <div className="main-grid">
 
         <div className="visualiser-panel">
-          <h3>Frequency Spectrum</h3>
+          <h3>FREQUENCY SPECTRUM</h3>
           <FrequencyVisualiser 
             input={inputSpectrum} 
             output={outputSpectrum} 
@@ -66,26 +66,13 @@ export default function App() {
             onModeChange={handleModeChange} 
           />
 
-          <div className="slider-block">
-            <label>Suppression Strength</label>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.05"
-              value={strength}
-              onChange={(e) => {
-                const val = parseFloat(e.target.value);
-                setStrength(val);
-                updateControl(mode, val);
-              }}
-            />
-          </div>
-
           <TargetSpeakerCard
-            strength={strength}
-            setStrength={setStrength}
-          />
+                strength={strength}
+                setStrength={(val) => {
+                    setStrength(val);
+                    updateControl(mode, val);
+                }}
+            />
 
         </div>
       </div>
