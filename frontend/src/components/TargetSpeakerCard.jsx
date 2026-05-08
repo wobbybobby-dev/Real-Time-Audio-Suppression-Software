@@ -8,10 +8,7 @@ export default function TargetSpeakerCard({
 }) {
   return (
     <section className="panel">
-      <h2 style={{ marginBottom: "1rem" }}>
-        🎯 Audio Control
-      </h2>
-
+      
       {/* Strength slider */}
       <div style={{ marginBottom: "1.5rem" }}>
         <div style={{
@@ -41,12 +38,6 @@ export default function TargetSpeakerCard({
         />
       </div>
 
-      {/* Start button */}
-      {!streaming && (
-        <button className="start-btn" onClick={startStreaming}>
-          ▶ Initialize Neural Pipeline
-        </button>
-      )}
     </section>
   );
 }
