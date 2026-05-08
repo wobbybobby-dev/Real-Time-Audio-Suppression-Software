@@ -1,3 +1,6 @@
+<img width="1600" height="738" alt="WhatsApp Image 2026-05-09 at 2 18 24 AM" src="https://github.com/user-attachments/assets/c68560be-bd3a-44e1-9c05-551f9afcbeef" />
+<img width="1600" height="742" alt="WhatsApp Image 2026-05-09 at 2 18 06 AM" src="https://github.com/user-attachments/assets/845cec92-3404-4807-920c-2efe8c58ac36" />
+<img width="1600" height="738" alt="WhatsApp Image 2026-05-09 at 2 17 48 AM" src="https://github.com/user-attachments/assets/bfbb062c-c1ae-4351-812b-064f381cb0c7" />
 #  Real-Time Audio Suppression System
 
 A real-time audio processing application that selectively enhances or suppresses speech using deep learning.
@@ -129,7 +132,10 @@ Video recorded on my phone, due to:
 Please excuse the times video gets blurry and I get shown in the PC screen due to the lighting, sorry about that!
 
 Since the video quality is poor (apologise for the inconvenience, I only have my smartphone at the moment), here are some screenshots of the app so you can see the UI clearly:
-* 
+<img width="1600" height="738" alt="WhatsApp Image 2026-05-09 at 2 18 24 AM" src="https://github.com/user-attachments/assets/192c9b88-b741-4cb7-852d-940110fcab7f" />
+<img width="1600" height="742" alt="WhatsApp Image 2026-05-09 at 2 18 06 AM" src="https://github.com/user-attachments/assets/8d6f410d-c14b-4db9-a910-62a243af58fb" />
+<img width="1600" height="738" alt="WhatsApp Image 2026-05-09 at 2 17 48 AM" src="https://github.com/user-attachments/assets/38e4de43-46b3-43f0-bab6-47ae6c1678db" />
+
 
 
 ---
