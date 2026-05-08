@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     # ── Audio capture ────────────────────────────────────────
     SAMPLE_RATE: int = 16000        # Hz
     CHANNELS: int = 1               # Mono
-    CHUNK_DURATION_MS: int = 30     # ms per WebSocket frame
-    CHUNK_SIZE: int = 480           # = SAMPLE_RATE * CHUNK_DURATION_MS / 1000
+    CHUNK_DURATION_MS: int = 8     # ms per WebSocket frame
+    CHUNK_SIZE: int = 128           # = SAMPLE_RATE * CHUNK_DURATION_MS / 1000
 
     # ── STFT / spectral ──────────────────────────────────────
     FFT_SIZE: int = 512
@@ -36,17 +36,10 @@ class Settings(BaseSettings):
     SPECTRAL_FLOOR: float = 0.05
 
     NOISE_CLASSES: list[str] = [
-        "voice", "mechanical_hum", "dog_bark", "traffic", "background",
+        "speech", "non-speech"
     ]
 
-    # [low_hz, high_hz, default_attenuation_db]
-    BAND_PROFILE: dict[str, list] = {
-        "voice":          [80,   3400, -18],
-        "mechanical_hum": [50,    400, -30],
-        "dog_bark":       [300,  4000, -20],
-        "traffic":        [20,   1000, -25],
-        "background":     [0,    8000,  -6],
-    }
+   
 
     class Config:
         env_file = ".env"
