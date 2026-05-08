@@ -80,7 +80,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 * Exploring different methods like Soft-Knee Limitation, AGC, AEC, soft masking, etc.
 * Current bottleneck has shifted from latency engineering to model quality and perceptual speech enhancement.
 
-### Dataset and Model Improvements
+### 2. Dataset and Model Improvements
 * Working on expanding dataset, and making a better model than the current U-Net one.
 * Exploring more advanced architectures inspired by modern speech enhancement systems (CRN, recurrent bottlenecks, temporal modeling).
 * Improvement in this area will directly improve speech intelligibility and overall audio quality.
