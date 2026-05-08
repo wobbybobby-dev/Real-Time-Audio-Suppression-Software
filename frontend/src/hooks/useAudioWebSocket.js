@@ -9,8 +9,9 @@ export const useAudioWS = (mode, strength) => {
 
     const ws = useRef(null);
     const audioContextRef = useRef(null);
-    const processorRef = useRef(null);
     const streamRef = useRef(null);
+    const workletRef = useRef(null);
+    const chunkBufferRef = useRef([]);
 
     const connectWS = () => {
         if (ws.current && ws.current.readyState === WebSocket.OPEN) return;
@@ -30,7 +31,7 @@ export const useAudioWS = (mode, strength) => {
             if (typeof event.data === "string") {
                 try {
                     const data = JSON.parse(event.data);
-                    
+
                     // The new processor prepend logic might change the 'mag' array length.
                     // We ensure we only take the most recent frames for the visualizer.
                     if (data.input && data.output) {
@@ -40,34 +41,51 @@ export const useAudioWS = (mode, strength) => {
                 } catch (e) {
                     console.error("JSON parse error", e);
                 }
-            } 
+            }
+
             // Handle Binary Audio Data
             else {
                 const audioBufferData = event.data;
                 const floatData = new Float32Array(audioBufferData);
                 const audioCtx = audioContextRef.current;
 
-                if (!audioCtx || audioCtx.state === 'suspended') return;
+                if (!audioCtx || audioCtx.state === "suspended") return;
 
-                const buffer = audioCtx.createBuffer(1, floatData.length, audioCtx.sampleRate);
+                const buffer = audioCtx.createBuffer(
+                    1,
+                    floatData.length,
+                    audioCtx.sampleRate
+                );
+
                 buffer.getChannelData(0).set(floatData);
 
                 const source = audioCtx.createBufferSource();
                 source.buffer = buffer;
                 source.connect(audioCtx.destination);
 
-                const lookAheadTime = 0.1; 
+                // Real-time frame dropping logic
+                const MAX_LATENCY = 0.15;
                 const now = audioCtx.currentTime;
 
-                if (!audioCtx._nextTime || audioCtx._nextTime < now) {
-                    audioCtx._nextTime = now + lookAheadTime;
+                // Hard realtime synchronization
+                const targetTime = now + 0.01;
+
+                // If queue drifts too far ahead,
+                // force resync immediately
+                if (
+                    !audioCtx._nextTime ||
+                    audioCtx._nextTime > now + MAX_LATENCY
+                ) {
+                    audioCtx._nextTime = targetTime;
                 }
-
-                source.start(audioCtx._nextTime);
-                audioCtx._nextTime += buffer.duration;
-
-                if (audioCtx._nextTime > now + 0.3) {
-                    audioCtx._nextTime = now + lookAheadTime;
+                source.start(audioCtx._nextTime);           // Schedule playback
+                source.onended = () => {
+                source.disconnect();
+                };
+                audioCtx._nextTime += buffer.duration;     // Keep next chunk tightly synced
+                // Prevent long-term drift accumulation
+                if (audioCtx._nextTime < now) {
+                    audioCtx._nextTime = targetTime;
                 }
             }
         };
@@ -76,41 +94,97 @@ export const useAudioWS = (mode, strength) => {
     const startStreaming = async () => {
         connectWS();
 
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+        });
+
         streamRef.current = stream;
 
         // Ensure 16kHz to match backend settings
-        const audioContext = new AudioContext({ sampleRate: 16000 });
+        const audioContext = new AudioContext({
+            sampleRate: 16000,
+        });
+
         audioContextRef.current = audioContext;
 
         const source = audioContext.createMediaStreamSource(stream);
-        
-        // We use 512 to match the overlap_size in the new processor.py
-        const processor = audioContext.createScriptProcessor(512, 1, 1);
-        processorRef.current = processor;
 
-        processor.onaudioprocess = (e) => {
-            if (ws.current?.readyState !== WebSocket.OPEN) return;
+        // Load AudioWorklet
+        await audioContext.audioWorklet.addModule("/audioProcessor.js");
 
-            const inputData = e.inputBuffer.getChannelData(0);
-            
-            // Send raw binary data
-            ws.current.send(new Float32Array(inputData).buffer);
+        // Create AudioWorkletNode
+        const workletNode = new AudioWorkletNode(
+            audioContext,
+            "audio-capture-processor"
+        );
+
+        workletRef.current = workletNode;
+
+        // Receive audio from worklet thread
+        workletNode.port.onmessage = (event) => {
+            if (ws.current?.readyState !== WebSocket.OPEN) {
+                return;
+            }
+
+            // Backpressure protection
+            if (ws.current.bufferedAmount > 32768) {
+                return;
+            }
+
+            const chunk = event.data;
+
+            // Append incoming samples
+            const previous = chunkBufferRef.current;
+
+            const merged = new Float32Array(
+                previous.length + chunk.length
+            );
+
+            merged.set(previous, 0);
+            merged.set(chunk, previous.length);
+
+            chunkBufferRef.current = merged;
+
+            // Send fixed 512 chunks only
+            while (chunkBufferRef.current.length >= 512) {
+
+                const sendChunk =
+                    chunkBufferRef.current.slice(0, 512);
+
+                ws.current.send(sendChunk.buffer);
+
+                // Keep remaining samples
+                chunkBufferRef.current =
+                    chunkBufferRef.current.slice(512);
+            }
         };
 
-        source.connect(processor);
-        processor.connect(audioContext.destination);
+        // Prevent raw mic playback
+        const dummyGain = audioContext.createGain();
+        dummyGain.gain.value = 0;
+
+        // Connect graph
+        source.connect(workletNode);
+        workletNode.connect(dummyGain);
+        dummyGain.connect(audioContext.destination);
 
         setStreaming(true);
     };
 
     const stopStreaming = () => {
-        processorRef.current?.disconnect();
+        workletRef.current?.disconnect();
         audioContextRef.current?.close();
         streamRef.current?.getTracks().forEach(track => track.stop());
         ws.current?.close();
+
         setStreaming(false);
         setConnected(false);
+
+        //clearing all
+        audioContextRef.current = null;
+        workletRef.current = null;
+        streamRef.current = null;
+        chunkBufferRef.current = [];
     };
 
     const updateControl = (newMode, newStrength) => {
@@ -123,5 +197,13 @@ export const useAudioWS = (mode, strength) => {
         }
     };
 
-    return { connected, streaming, startStreaming, stopStreaming, inputSpectrum, outputSpectrum, updateControl };
+    return {
+        connected,
+        streaming,
+        startStreaming,
+        stopStreaming,
+        inputSpectrum,
+        outputSpectrum,
+        updateControl
+    };
 };
