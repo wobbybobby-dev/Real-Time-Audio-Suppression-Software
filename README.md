@@ -145,7 +145,10 @@ Since the video quality is poor (apologise for the inconvenience, I only have my
 <img width="1600" height="742" alt="WhatsApp Image 2026-05-09 at 2 18 06 AM" src="https://github.com/user-attachments/assets/8d6f410d-c14b-4db9-a910-62a243af58fb" />
 <img width="1600" height="738" alt="WhatsApp Image 2026-05-09 at 2 17 48 AM" src="https://github.com/user-attachments/assets/38e4de43-46b3-43f0-bab6-47ae6c1678db" />
 
+Here is a short snapshot of the performance log during development:
+<img width="391" height="418" alt="image" src="https://github.com/user-attachments/assets/47adeed3-b54e-4bbd-b7fb-778bf60c8d39" />
 
+Typical steady-state realtime processing latency after ONNX Runtime optimization. 
 
 ---
 
