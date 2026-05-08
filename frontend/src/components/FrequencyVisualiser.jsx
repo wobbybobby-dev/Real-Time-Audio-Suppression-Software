@@ -13,14 +13,14 @@ export default function FrequencyVisualiser({ input = [], output = [] }) {
 
     ctx.clearRect(0, 0, width, height);
 
-    // 🔥 Reduce bars (important)
+    //  Reduce bars (important)
     const maxBars = 64;
     const step = Math.floor(input.length / maxBars);
     const bars = maxBars;
 
     const barWidth = width / bars;
 
-    // 🔥 Normalize
+    //  Normalize
     const maxVal = Math.max(...input, ...output, 1e-6);
 
     for (let i = 0; i < bars; i++) {
