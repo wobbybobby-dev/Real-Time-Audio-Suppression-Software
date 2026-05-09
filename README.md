@@ -64,12 +64,11 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 ---
 #  Challenges Overcomed
 
-* Real-Time Latency Stabilization -- Used ONNX Runtime to make system usable in real-time, significantly decreasing latency and preventing long-term latency accumulation.
+* Real-Time Latency Stabilization -- Used ONNX Runtime to make system usable in real-time, preventing long-term latency accumulation.
 * Training Optimization -- Huge GPU power required, so training done on Google Colabs
 * Dataset Optimization -- Used Lean Dataset Strategy
 * Frontend-Backend Synchronization -- Stabilized live audio streaming and playback between frontend and backend in real-time.
 * ONNX Deployment Issues -- Resolved tensor shape mismatches, dynamic padding issues, and inference instability during ONNX Runtime migration.
-* Real-Time Resource Constraints -- Optimized the system to maintain stable realtime responsiveness under normal usage despite browser and CPU contention.
 
 
 #  Current Challenges
@@ -84,6 +83,13 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 * Working on expanding dataset, and making a better model than the current U-Net one.
 * Exploring more advanced architectures inspired by modern speech enhancement systems (CRN, recurrent bottlenecks, temporal modeling).
 * Improvement in this area will directly improve speech intelligibility and overall audio quality.
+
+  ### 3. Improving Model Architecture
+* Currently, ONNX inference model is too big for my CPU.
+* This adds to latency.
+<img width="930" height="925" alt="image" src="https://github.com/user-attachments/assets/8e242a2f-3320-4eb3-9ef5-9c0d2d3afbff" />
+Attached are some process logs to show what I mean. Here we see ISFT and STFT take very less time, while ONNX itself is taking more time.
+* Working on finding ways to build a lightweight, quantized model, with better and larger dataset training.
 --
 
 #  Current Status
