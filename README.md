@@ -87,9 +87,10 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 ### 3. Improving Model Architecture
 * Currently, ONNX inference model is too big for my CPU.
 * This adds to latency.
+* Working on finding ways to build a lightweight, quantized model, with better and larger dataset training.
+
 <img width="930" height="925" alt="image" src="https://github.com/user-attachments/assets/8e242a2f-3320-4eb3-9ef5-9c0d2d3afbff" />
 Attached are some process logs to show what I mean. Here we see ISFT and STFT take very less time, while ONNX itself is taking more time.
-* Working on finding ways to build a lightweight, quantized model, with better and larger dataset training.
 
 --
 
