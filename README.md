@@ -84,7 +84,7 @@ Microphone → WebSocket → STFT → U-Net Masking → ISTFT → Playback
 * Exploring more advanced architectures inspired by modern speech enhancement systems (CRN, recurrent bottlenecks, temporal modeling).
 * Improvement in this area will directly improve speech intelligibility and overall audio quality.
 
-  ### 3. Improving Model Architecture
+### 3. Improving Model Architecture
 * Currently, ONNX inference model is too big for my CPU.
 * This adds to latency.
 <img width="930" height="925" alt="image" src="https://github.com/user-attachments/assets/8e242a2f-3320-4eb3-9ef5-9c0d2d3afbff" />
