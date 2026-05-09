@@ -98,7 +98,7 @@ Attached are some process logs to show what I mean. Here we see ISFT and STFT ta
  Model Training    :  Completed          
  Backend Pipeline  : Working            
  Audio Quality     :  Improving           
- Real-Time Latency :  Achieved stable low latency real-time, using ONNX
+ Real-Time Latency :  Achieved stable low latency real-time, under normal conditions.
 
 ---
 
