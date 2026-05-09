@@ -101,6 +101,8 @@ Attached are some process logs to show what I mean. Here we see ISFT and STFT ta
  Audio Quality     :  Improving           
  Real-Time Latency :  Achieved stable low latency real-time, under normal conditions.
 
+ Currently, it is a working end-to-end prototype.
+
 ---
 
 #  Key Insight
